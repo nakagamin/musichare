@@ -10911,6 +10911,11 @@ a.text-dark:focus {
   height: 60px;
 }
 
+.alert {
+  width: 80%;
+  margin: auto;
+}
+
 .footer {
   background-color: #423a3a;
 }

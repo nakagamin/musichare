@@ -45,7 +45,7 @@
                             <a class="nav-link" href="">MusiShareとは？</a>
                           </li>
                           <li class="nav-item">
-                            <a class="nav-link color-accent bold" href="">音楽を投稿</a>
+                            <a class="nav-link color-accent bold" href="/music/create">音楽を投稿</a>
                           </li>
                         <!-- Authentication Links -->
                         @guest
