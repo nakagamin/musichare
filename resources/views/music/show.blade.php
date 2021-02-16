@@ -5,12 +5,14 @@
 @endsection
 
 @section('javascript')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <script src="{{ asset('library/audiojs/audio.min.js') }}"></script>
 <script>
   audiojs.events.ready(function() {
     var as = audiojs.createAll();
   });
 </script>
+<script src="{{ asset('js/music/show.js') }}" defer></script>
 @endsection
 
 @section('content')
@@ -21,24 +23,28 @@
   </ol>
 </nav>
 <section class='music bg-white p-lg-5'>
-  <div class='row'>
-    <h1 class='color-main bold'>{{ $music['title'] }}</h1>
+  <div class='row title-row mb-3 w-100'>
+    <h1 class='music__title color-main bold'>{{ $music['title'] }}</h1>
     <p class='color-accent bold ml-auto'>{{$music['category_name']}}</p>
   </div>
-  <div class='row'>
-    <div class='col-md-12 col-lg-6 text-center'>
-        <img id='music__image' class="music__image" src="{{ empty($music['image']) ? '/images/music-dummy.jpg' : $music['image'] }}" >
+  <div class='row mb-3'>
+    <div class='col-md-12 col-lg-6'>
+      <img id='music__image' class="music__image" src="{{ empty($music['image']) ? '/images/music-dummy.jpg' : $music['image'] }}" >
     </div>
-    <div class='col-md-12 col-lg-6 text-center'>
+    <div class='col-md-12 col-lg-6'>
       <p>{{ nl2br($music['description']) }}</p>
     </div>
   </div>
   <div class='row'>
-    <div class='col-md-12 col-lg-6 text-center'>
-        <a href="{{ route('music.download', ['id' => $music['id']])}}" target="blank">ダウンロード</a>
-      <p>いいね！</p>
+    <div class='col-md-12 col-lg-4 text-center'>
+      <a class='music__download' href="{{ route('music.download', ['id' => $music['id']])}}" target="blank"><i class="fas fa-cloud-download-alt mr-1"></i>ダウンロード</a>
+        @if($liked)
+        <p class='music__like' onclick="like({{ $music['id'] }}, {{ $music['user_id'] }})"><i id='like-icon' class="fas fa-heart color-pink mr-1"></i>いいね！</p>
+    @else
+        <p class='music__like' onclick="like({{ $music['id'] }}, {{ $music['user_id'] }})"><i id='like-icon' class="far fa-heart mr-1"></i>いいね！</p>
+    @endif
     </div>
-    <div class='col-md-12 col-lg-6 text-center'>
+    <div class='col-md-12 col-lg-8'>
         <audio src="{{ $music['mp3'] }}" preload="auto" />
     </div>
   </div>
