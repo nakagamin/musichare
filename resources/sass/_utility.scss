@@ -1,14 +1,24 @@
 .color-main{
     color: #00B8A9 !important;
   }
-  .color-accent{
+.color-accent{
     color: #F6416C !important;
   }
 
-  .color-pink {
+.color-pink {
     color: #ef93b6 !important;
-}
+  }
 
-  .bold {
+.bold {
     font-weight: bold !important;
   }
+.bg-yellow{
+    background-color: #f8f3d4 !important;
+  }
+
+.elipsis3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
